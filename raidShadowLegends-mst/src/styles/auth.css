@@ -1,0 +1,34 @@
+.authView {
+  height: 100vh;
+  width: 100vw;
+}
+button {
+  background-color: #04aa6d; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  cursor: pointer; /* Show pointer cursor on hover */
+  transition: all 0.3s ease; /* Smooth transition for effects */
+}
+
+button:hover {
+  background-color: #038d58; /* Darker green on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
+  transform: translateY(-2px); /* Slight lift effect on hover */
+}
+
+button:active {
+  background-color: #026f4a; /* Even darker green on click */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Slightly smaller shadow when clicked */
+  transform: translateY(0); /* Button returns to normal on click */
+}
+input {
+  box-sizing: border-box;
+  border: 2px solid black;
+}
