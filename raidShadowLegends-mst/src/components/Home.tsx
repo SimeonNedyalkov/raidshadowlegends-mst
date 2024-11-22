@@ -12,8 +12,9 @@ export default function Home() {
       rarity: ["Common", "Uncommon", "Rare"],
       summoned: [0, 21, 19],
       summonChance: ["89.5%", "10%", "0.5%"],
+      relativePercent: ["0", "0", "0"],
       mercyCount: 200,
-      colors: ["#2563eb", "#6b7280", "#10b981"], // blue, gray, green
+      colors: ["#2563eb", "#6b7280", "#10b981"],
     },
     {
       img: ancientshard,
@@ -21,6 +22,7 @@ export default function Home() {
       rarity: ["Rare", "Epic", "Legendary"],
       summoned: [0, 21, 19],
       summonChance: ["89.5%", "10%", "0.5%"],
+      relativePercent: ["0", "0", "0"],
       mercyCount: 200,
       colors: ["#2563eb", "#8b5cf6", "#f59e0b"], // blue, purple, yellow
     },
@@ -30,6 +32,7 @@ export default function Home() {
       rarity: ["Rare", "Epic", "Legendary"],
       summoned: [0, 21, 19],
       summonChance: ["91.5%", "8%", "0.5%"],
+      relativePercent: ["0", "0", "0"],
       mercyCount: 200,
       colors: ["#2563eb", "#8b5cf6", "#f59e0b"], // blue, purple, yellow
     },
@@ -39,6 +42,7 @@ export default function Home() {
       rarity: ["Epic", "Legendary"],
       summoned: [5, 1], // Updated based on your input
       summonChance: ["94%", "6%"],
+      relativePercent: ["0", "0"],
       mercyCount: 12,
       colors: ["#8b5cf6", "#f59e0b"], // purple, yellow
     },
@@ -120,7 +124,10 @@ export default function Home() {
               <th>Progress</th>
               <th>Summoned Since Rarity</th>
               <th>Summon Chance</th>
-              <th>Relative Percent</th>
+              <th>
+                <span className="text-emerald-400">&#x21E7;</span>/
+                <span className="text-red-400">&#x21e9;</span>Relative Percent
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -169,18 +176,25 @@ export default function Home() {
                 </td>
                 <td>
                   <div className="flex flex-col">
-                    {shard.summonChance.map((chance, idx) => {
+                    {shard.summonChance.map((count, idx) => (
+                      <span key={idx}>{count}</span>
+                    ))}
+                  </div>
+                </td>
+                <td>
+                  <div className="flex flex-col">
+                    {shard.relativePercent.map((count, idx) => {
                       if (shard.summoned[idx] > shard.mercyCount) {
                         const chanceIncrease =
                           (Number(shard.summoned[idx]) - shard.mercyCount) * 2;
                         return (
                           <span key={idx}>
-                            {chance} + {chanceIncrease}%{" "}
+                            {count} + {chanceIncrease}%{" "}
                             <span className="text-emerald-400">&#x21E7;</span>
                           </span>
                         );
                       } else {
-                        return <span key={idx}>{chance}</span>;
+                        return <span key={idx}>{count}</span>;
                       }
                     })}
                   </div>
