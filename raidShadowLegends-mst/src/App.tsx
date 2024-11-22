@@ -1,7 +1,10 @@
 import Auth from "./components/auth";
 import Home from "./components/Home";
-import "./styles/base.css";
+import { db } from "./config/firebase";
+
 import { Routes, Route } from "react-router-dom";
+import "./styles/base.css";
+
 function App() {
   return (
     <div>

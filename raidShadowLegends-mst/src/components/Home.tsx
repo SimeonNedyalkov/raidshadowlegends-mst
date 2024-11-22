@@ -1,10 +1,29 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import mysteryshard from "../assets/shardImages/OIP-removebg-preview.png";
 import ancientshard from "../assets/shardImages/ancient-removebg-preview.png";
 import voidshard from "../assets/shardImages/OIP__1_-removebg-preview.png";
 import sacredshard from "../assets/shardImages/OIP__2_-removebg-preview.png";
+import { getDocs, collection } from "firebase/firestore";
+import { db } from "../config/firebase";
 
 export default function Home() {
+  const [initialShardDataFirebase, setInitialShardDataFirebase] = useState({});
+  const shardCollectionRef = collection(db, "shardData");
+  useEffect(() => {
+    const getShard = async () => {
+      try {
+        const data = await getDocs(shardCollectionRef);
+        const filteredData = data.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
+        console.log(filteredData);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    getShard();
+  }, []);
   const initialShardData = [
     {
       img: mysteryshard,
@@ -65,7 +84,6 @@ export default function Home() {
       })
     );
   };
-
   return (
     <div className="home flex flex-col items-center">
       <div className="input-container my-4">
