@@ -43,7 +43,7 @@ export default function Home() {
       summonChance: ["89.5%", "10%", "0.5%"],
       relativePercent: ["0", "0", "0"],
       mercyCount: 200,
-      colors: ["#2563eb", "#8b5cf6", "#f59e0b"], // blue, purple, yellow
+      colors: ["#2563eb", "#8b5cf6", "#f59e0b"],
     },
     {
       img: voidshard,
@@ -53,23 +53,23 @@ export default function Home() {
       summonChance: ["91.5%", "8%", "0.5%"],
       relativePercent: ["0", "0", "0"],
       mercyCount: 200,
-      colors: ["#2563eb", "#8b5cf6", "#f59e0b"], // blue, purple, yellow
+      colors: ["#2563eb", "#8b5cf6", "#f59e0b"],
     },
     {
       img: sacredshard,
       name: "Sacred Shard",
       rarity: ["Epic", "Legendary"],
-      summoned: [5, 1], // Updated based on your input
+      summoned: [5, 1],
       summonChance: ["94%", "6%"],
       relativePercent: ["0", "0"],
       mercyCount: 12,
-      colors: ["#8b5cf6", "#f59e0b"], // purple, yellow
+      colors: ["#8b5cf6", "#f59e0b"],
     },
   ];
 
   const [shardData, setShardData] = useState(initialShardData);
   const [selectedShard, setSelectedShard] = useState("Sacred Shard");
-  const [selectedRarity, setSelectedRarity] = useState(0); // 0 for first rarity
+  const [selectedRarity, setSelectedRarity] = useState(0);
   const [shardsOpened, setShardsOpened] = useState(1);
 
   const updateShardSummons = () => {
