@@ -2,8 +2,8 @@
   height: 100vh;
   width: 100vw;
 }
-button {
-  background-color: #04aa6d; /* Green */
+/* button {
+  background-color: #04aa6d; 
   border: none;
   color: white;
   padding: 15px 32px;
@@ -11,11 +11,11 @@ button {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
-  cursor: pointer; /* Show pointer cursor on hover */
-  transition: all 0.3s ease; /* Smooth transition for effects */
-}
+  border-radius: 8px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  cursor: pointer; 
+  transition: all 0.3s ease; 
+} */
 
 button:hover {
   background-color: #038d58; /* Darker green on hover */

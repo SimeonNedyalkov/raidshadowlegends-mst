@@ -128,7 +128,7 @@ export default function Home() {
         </label>
         <button
           onClick={updateShardSummons}
-          className="ml-4 px-4 py-2 bg-blue-500 text-white rounded-lg"
+          className="b1 ml-4 px-4 py-2 bg-blue-500 text-white rounded-lg"
         >
           Update Summons
         </button>
@@ -188,7 +188,11 @@ export default function Home() {
                 <td>
                   <div className="flex flex-col">
                     {shard.summoned.map((count, idx) => (
-                      <span key={idx}>{count}</span>
+                      <div>
+                        <button className="clickingButtons">🞃</button>
+                        <span key={idx}>{count}</span>
+                        <button className="clickingButtons">🞁</button>
+                      </div>
                     ))}
                   </div>
                 </td>
