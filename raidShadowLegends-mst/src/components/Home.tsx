@@ -188,10 +188,10 @@ export default function Home() {
                 <td>
                   <div className="flex flex-col">
                     {shard.summoned.map((count, idx) => (
-                      <div>
-                        <button className="clickingButtons">🞃</button>
-                        <span key={idx}>{count}</span>
-                        <button className="clickingButtons">🞁</button>
+                      <div key={idx} className="flex justify-center">
+                        <button className="clickingButtonsLeft">🞃</button>
+                        <span className="text-lg ml-3 mr-3">{count}</span>
+                        <button className="clickingButtonsRight">🞁</button>
                       </div>
                     ))}
                   </div>

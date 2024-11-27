@@ -88,11 +88,35 @@ td span {
   font-size: 12px;
   color: #333;
 }
-.clickingButtons {
-  height: 10px;
-  width: 10px;
-  padding: 10px;
+.clickingButtonsLeft,
+.clickingButtonsRight {
+  height: 20px; /* Increased size for better clickability */
+  width: 20px;
+  background-color: #4caf50; /* A nice green color */
+  color: white; /* White text for contrast */
+  border: none; /* Remove borders */
+  border-radius: 50%; /* Rounded buttons */
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center the icons */
+  font-size: 14px; /* Slightly larger font */
+  cursor: pointer; /* Pointer cursor on hover */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  transition: all 0.3s ease; /* Smooth hover effect */
 }
+
+.clickingButtonsLeft:hover,
+.clickingButtonsRight:hover {
+  background-color: #45a049; /* Slightly darker green on hover */
+  transform: scale(1.1); /* Scale up slightly */
+}
+
+.clickingButtonsLeft:active,
+.clickingButtonsRight:active {
+  background-color: #3e8e41; /* Even darker green on active */
+  transform: scale(0.95); /* Slightly shrink on click */
+}
+
 .b1 {
   background-color: #04aa6d; /* Green */
   border: none;
