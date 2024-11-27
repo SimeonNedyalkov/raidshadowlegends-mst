@@ -29,7 +29,7 @@ export default function Home() {
               (r: string) => shard.relativePercent[r] || 0
             ),
             colors: shard.rarity.map((r: string) => shard.colors[r]),
-            mercyCount: shard.mercyCount,
+            mercyCount: shard.mercyCount, // Retain original mercyCount structure
           };
         });
         console.log(filteredData);
@@ -163,7 +163,7 @@ export default function Home() {
                 </td>
                 <td>
                   <div className="progress-container">
-                    {shard.rarity.map((rarity: any[], idx: number) => (
+                    {shard.rarity.map((rarity: string[], idx: number) => (
                       <div key={idx} className="progress-bar-container">
                         <div
                           className="progress-bar"
@@ -195,7 +195,7 @@ export default function Home() {
                 <td>
                   <div className="flex flex-col">
                     {shard.summonedChance.map((count: number, idx: number) => (
-                      <span key={idx}>{count}</span>
+                      <span key={idx}>{count}%</span>
                     ))}
                   </div>
                 </td>
@@ -212,7 +212,7 @@ export default function Home() {
                           </span>
                         );
                       } else {
-                        return <span key={idx}>{count}</span>;
+                        return <span key={idx}>{count}%</span>;
                       }
                     })}
                   </div>
