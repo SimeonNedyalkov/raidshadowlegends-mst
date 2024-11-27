@@ -7,67 +7,41 @@ import { getDocs, collection } from "firebase/firestore";
 import { db } from "../config/firebase";
 
 export default function Home() {
-  const [initialShardDataFirebase, setInitialShardDataFirebase] = useState({});
+  const [initialShardDataFirebase, setInitialShardDataFirebase] = useState<
+    any[]
+  >([]);
   const shardCollectionRef = collection(db, "shardData");
   useEffect(() => {
     const getShard = async () => {
       try {
         const data = await getDocs(shardCollectionRef);
-        const filteredData = data.docs.map((doc) => ({
-          ...doc.data(),
-          id: doc.id,
-        }));
+        const filteredData: any[] = data.docs.map((doc) => {
+          const shard = doc.data();
+          return {
+            ...shard,
+            id: doc.id,
+            // Transform `summoned` object to array
+            summoned: shard.rarity.map((r: string) => shard.summoned[r] || 0),
+            summonedChance: shard.rarity.map(
+              (r: string) => shard.summonedChance[r] || 0
+            ),
+            relativePercent: shard.rarity.map(
+              (r: string) => shard.relativePercent[r] || 0
+            ),
+            colors: shard.rarity.map((r: string) => shard.colors[r]),
+            mercyCount: shard.mercyCount,
+          };
+        });
         console.log(filteredData);
+        setInitialShardDataFirebase(filteredData);
       } catch (error) {
         console.error(error);
       }
     };
     getShard();
   }, []);
-  const initialShardData = [
-    {
-      img: mysteryshard,
-      name: "Mystery Shard",
-      rarity: ["Common", "Uncommon", "Rare"],
-      summoned: [0, 21, 19],
-      summonChance: ["89.5%", "10%", "0.5%"],
-      relativePercent: ["0", "0", "0"],
-      mercyCount: 200,
-      colors: ["#2563eb", "#6b7280", "#10b981"],
-    },
-    {
-      img: ancientshard,
-      name: "Ancient Shard",
-      rarity: ["Rare", "Epic", "Legendary"],
-      summoned: [0, 21, 19],
-      summonChance: ["89.5%", "10%", "0.5%"],
-      relativePercent: ["0", "0", "0"],
-      mercyCount: 200,
-      colors: ["#2563eb", "#8b5cf6", "#f59e0b"],
-    },
-    {
-      img: voidshard,
-      name: "Void Shard",
-      rarity: ["Rare", "Epic", "Legendary"],
-      summoned: [0, 21, 19],
-      summonChance: ["91.5%", "8%", "0.5%"],
-      relativePercent: ["0", "0", "0"],
-      mercyCount: 200,
-      colors: ["#2563eb", "#8b5cf6", "#f59e0b"],
-    },
-    {
-      img: sacredshard,
-      name: "Sacred Shard",
-      rarity: ["Epic", "Legendary"],
-      summoned: [5, 1],
-      summonChance: ["94%", "6%"],
-      relativePercent: ["0", "0"],
-      mercyCount: 12,
-      colors: ["#8b5cf6", "#f59e0b"],
-    },
-  ];
 
-  const [shardData, setShardData] = useState(initialShardData);
+  const [shardData, setShardData] = useState(initialShardDataFirebase);
   const [selectedShard, setSelectedShard] = useState("Sacred Shard");
   const [selectedRarity, setSelectedRarity] = useState(0);
   const [shardsOpened, setShardsOpened] = useState(1);
@@ -110,7 +84,7 @@ export default function Home() {
           >
             {shardData
               .find((shard) => shard.name === selectedShard)
-              ?.rarity.map((rarity, index) => (
+              ?.rarity.map((rarity: any, index: number) => (
                 <option key={index} value={index}>
                   {rarity}
                 </option>
@@ -149,25 +123,47 @@ export default function Home() {
             </tr>
           </thead>
           <tbody>
-            {shardData.map((shard, index) => (
+            {initialShardDataFirebase.map((shard, index) => (
               <tr key={index}>
                 <td>
-                  <img
-                    src={shard.img}
-                    alt={`${shard.name} Image`}
-                    className="shard-img"
-                  />
+                  {shard.name === "ancientShard" ? (
+                    <img
+                      src={ancientshard}
+                      alt="Ancient Shard Image"
+                      className="shard-img"
+                    />
+                  ) : shard.name === "mysteryShard" ? (
+                    <img
+                      src={mysteryshard}
+                      alt="Mystery Shard Image"
+                      className="shard-img"
+                    />
+                  ) : shard.name === "voidShard" ? (
+                    <img
+                      src={voidshard}
+                      alt="Void Shard Image"
+                      className="shard-img"
+                    />
+                  ) : shard.name === "sacredShard" ? (
+                    <img
+                      src={sacredshard}
+                      alt="Sacred Shard Image"
+                      className="shard-img"
+                    />
+                  ) : (
+                    <span>Unknown Shard</span>
+                  )}
                 </td>
                 <td>
                   <div className="flex flex-col">
-                    {shard.rarity.map((rarity, idx) => (
+                    {shard.rarity.map((rarity: string[], idx: number) => (
                       <span key={idx}>{rarity}</span>
                     ))}
                   </div>
                 </td>
                 <td>
                   <div className="progress-container">
-                    {shard.rarity.map((rarity, idx) => (
+                    {shard.rarity.map((rarity: any[], idx: number) => (
                       <div key={idx} className="progress-bar-container">
                         <div
                           className="progress-bar"
@@ -187,7 +183,7 @@ export default function Home() {
                 </td>
                 <td>
                   <div className="flex flex-col">
-                    {shard.summoned.map((count, idx) => (
+                    {shard.summoned.map((count: number, idx: number) => (
                       <div key={idx} className="flex justify-center">
                         <button className="clickingButtonsLeft">🞃</button>
                         <span className="text-lg ml-3 mr-3">{count}</span>
@@ -198,14 +194,14 @@ export default function Home() {
                 </td>
                 <td>
                   <div className="flex flex-col">
-                    {shard.summonChance.map((count, idx) => (
+                    {shard.summonedChance.map((count: number, idx: number) => (
                       <span key={idx}>{count}</span>
                     ))}
                   </div>
                 </td>
                 <td>
                   <div className="flex flex-col">
-                    {shard.relativePercent.map((count, idx) => {
+                    {shard.relativePercent.map((count: number, idx: number) => {
                       if (shard.summoned[idx] > shard.mercyCount) {
                         const chanceIncrease =
                           (Number(shard.summoned[idx]) - shard.mercyCount) * 2;
