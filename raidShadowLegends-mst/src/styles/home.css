@@ -90,35 +90,35 @@ td span {
 }
 .clickingButtonsLeft,
 .clickingButtonsRight {
-  height: 20px; /* Increased size for better clickability */
+  height: 20px;
   width: 20px;
-  background-color: #4caf50; /* A nice green color */
-  color: white; /* White text for contrast */
-  border: none; /* Remove borders */
-  border-radius: 50%; /* Rounded buttons */
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 50%;
   display: flex;
   align-items: center;
-  justify-content: center; /* Center the icons */
-  font-size: 14px; /* Slightly larger font */
-  cursor: pointer; /* Pointer cursor on hover */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
-  transition: all 0.3s ease; /* Smooth hover effect */
+  justify-content: center;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
 .clickingButtonsLeft:hover,
 .clickingButtonsRight:hover {
-  background-color: #45a049; /* Slightly darker green on hover */
-  transform: scale(1.1); /* Scale up slightly */
+  background-color: #45a049;
+  transform: scale(1.1);
 }
 
 .clickingButtonsLeft:active,
 .clickingButtonsRight:active {
-  background-color: #3e8e41; /* Even darker green on active */
-  transform: scale(0.95); /* Slightly shrink on click */
+  background-color: #3e8e41;
+  transform: scale(0.95);
 }
 
 .b1 {
-  background-color: #04aa6d; /* Green */
+  background-color: #04aa6d;
   border: none;
   color: white;
   padding: 15px 32px;
@@ -126,8 +126,8 @@ td span {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
-  cursor: pointer; /* Show pointer cursor on hover */
-  transition: all 0.3s ease; /* Smooth transition for effects */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
